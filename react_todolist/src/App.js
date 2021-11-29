@@ -3,18 +3,20 @@ import { useImperativeHandle, useState } from "react";
 function App() {
 
   const [todo, setTodo] = useState("");
+  const [todos, setTodos] = useState([]);
 
   function handleSubmit(event) {
     event.preventDefault();
     if (todo === "") {
       return ;
     }
+    setTodos(current => [...current, todo])
     setTodo("");
   }
 
   return (
     <div>
-      <h1>오늘의 할일</h1>
+      <h1>오늘의 할일 ({todos.length}개)</h1>
       <form action="" onSubmit={handleSubmit}>
         <input
           value={todo}
@@ -23,6 +25,10 @@ function App() {
           onChange={(event) => {setTodo(event.target.value);}} />
         <button type="submit">저장</button>
       </form>
+      <hr />
+      <ul>
+        {todos.map((item, key) => <li key={key}>{item}</li>)}
+      </ul>
     </div>
   );
 }
