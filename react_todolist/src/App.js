@@ -6,7 +6,10 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(todo)
+    if (todo === "") {
+      return ;
+    }
+    setTodo("");
   }
 
   return (
