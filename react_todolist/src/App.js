@@ -1,4 +1,4 @@
-import { useImperativeHandle, useState } from "react";
+import { useState } from "react";
 
 function App() {
 
@@ -14,6 +14,18 @@ function App() {
     setTodo("");
   }
 
+  function Update() {
+    return (
+      <button type="button">수정</button>
+    )
+  }
+
+  function Delete() {
+    return (
+      <button type="button">삭제</button>
+    )
+  }
+
   return (
     <div>
       <h1>오늘의 할일 ({todos.length}개)</h1>
@@ -27,7 +39,12 @@ function App() {
       </form>
       <hr />
       <ul>
-        {todos.map((item, key) => <li key={key}>{item}</li>)}
+        {todos.map((item, key) => (
+          <li key={key}>{item}
+            <Update />
+            <Delete />
+          </li>
+        ))}
       </ul>
     </div>
   );
