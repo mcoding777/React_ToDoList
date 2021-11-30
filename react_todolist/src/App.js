@@ -3,15 +3,32 @@ import { useState } from "react";
 function App() {
 
   const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([{
+    isCompleted: false,
+    value: ""
+  }]);
 
   function handleSubmit(event) {
     event.preventDefault();
     if (todo === "") {
       return ;
     }
-    setTodos(current => [...current, todo])
+    setTodos(current => {
+      return (
+        [...current, 
+        {
+          isCompleted: false,
+          value: todo
+        }]
+        )
+      });
     setTodo("");
+  }
+  
+  function Complete() {
+    return (
+      <button type="button">완료</button>
+    )
   }
 
   function Update() {
@@ -41,6 +58,7 @@ function App() {
       <ul>
         {todos.map((item, key) => (
           <li key={key}>{item}
+            <Complete />
             <Update />
             <Delete />
           </li>
