@@ -24,23 +24,13 @@ function App() {
       });
     setTodo("");
   }
-  
-  function Complete() {
-    return (
-      <button type="button">완료</button>
-    )
-  }
 
-  function Update() {
-    return (
-      <button type="button">수정</button>
-    )
-  }
-
-  function Delete() {
-    return (
-      <button type="button">삭제</button>
-    )
+  function handleComplete(index) {
+    setTodo((current) => {
+      const newCurrent = [...current];
+      current[index].isCompleted = true;
+      return newCurrent;
+    })
   }
 
   return (
@@ -56,11 +46,12 @@ function App() {
       </form>
       <hr />
       <ul>
-        {todos.map((item, key) => (
-          <li key={key}>{item}
-            <Complete />
-            <Update />
-            <Delete />
+        {todos.map((item, index) => (
+          <li>{item}
+            <button type="button" 
+              onClick={() => {handleComplete(index)}}>완료</button>
+            <button type="button">수정</button>
+            <button type="button">삭제</button>
           </li>
         ))}
       </ul>
