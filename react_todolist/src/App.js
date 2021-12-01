@@ -3,10 +3,7 @@ import { useState } from "react";
 function App() {
 
   const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([{
-    isCompleted: false,
-    value: ""
-  }]);
+  const [todos, setTodos] = useState([]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -16,19 +13,19 @@ function App() {
     setTodos(current => {
       return (
         [...current, 
-        {
-          isCompleted: false,
-          value: todo
-        }]
-        )
+          {
+            isCompleted: false,
+            value: todo
+          }
+        ])
       });
     setTodo("");
   }
 
   function handleComplete(index) {
-    setTodo((current) => {
+    setTodos((current) => {
       const newCurrent = [...current];
-      current[index].isCompleted = true;
+      newCurrent[index].isCompleted = true;
       return newCurrent;
     })
   }
@@ -47,9 +44,9 @@ function App() {
       <hr />
       <ul>
         {todos.map((item, index) => (
-          <li>{item}
+          <li>{item.value}
             <button type="button" 
-              onClick={() => {handleComplete(index)}}>완료</button>
+              onClick={() => handleComplete(index)}>완료</button>
             <button type="button">수정</button>
             <button type="button">삭제</button>
           </li>
