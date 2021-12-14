@@ -36,7 +36,7 @@ function App() {
       <header>
         <h1>오늘의 할일 ({todos.length}개)</h1>
         <div className="container">
-          <form action="" onSubmit={handleSubmit} className="inputform">
+          <form action="" onSubmit={handleSubmit}>
             <input
               value={todo}
               type="text"
@@ -50,7 +50,7 @@ function App() {
       <main>
         <ul>
           {todos.map((item, index) => (
-            <li>{item.value}
+            <li><span>{item.value}</span>
               <button type="button" 
                 onClick={() => handleComplete(index)}>완료</button>
               <button type="button">수정</button>

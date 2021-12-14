@@ -4,17 +4,77 @@
 }
 
 header {
-    width: 500px;
+    width: 100%;
+    height: 100px;
+
     text-align: center;
 
-    background-color: rgb(224, 224, 224);
+    padding-top: 10px;
+
+    background-color: rgb(243, 243, 243);
 }
 
-header .container .inputform {
-    width: 500px;
+header .container form {
+    margin: 10px 0;
 }
 
-.container .inputform input {
+header .container input {
+    all: unset;
+
     width: 300px;
+    height: 25px;
+
+    margin: 0 10px 10px 0;
+
+    background-color: white;
+}
+
+header .container button {
+    all: unset;
+
+    color: white;
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+    background-color: gray;
+
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+    height: 100px;
+
+    text-align: center;
+    line-height: 20px;
+
+    margin-top: 20px;
+}
+
+main ul li {
+    margin: 10px 0;
+}
+
+main ul li span {
+    display: inline-block;
+    min-width: 200px;
+}
+
+main ul li button {
+    all: unset;
+
     margin-right: 10px;
+
+    color: white;
+    font-size: 10px;
+
+    padding: 5px;
+
+    border-radius: 15px;
+
+    background-color: gray;
+
+    cursor: pointer;
 }
