@@ -3,8 +3,9 @@ import "./App.css";
 
 function App() {
 
+  const localTodos = JSON.parse(localStorage.getItem('todos'))
   const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(localTodos ? localTodos : [])
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -12,13 +13,13 @@ function App() {
       return ;
     }
     setTodos(current => {
-      return (
-        [...current, 
-          {
-            isCompleted: false,
-            value: todo
-          }
-        ])
+      const newCurrent = [...current, 
+        {
+          isCompleted: false,
+          value: todo
+        }]
+      localStorage.setItem('todos', JSON.stringify(newCurrent));
+      return newCurrent
       });
     setTodo("");
   }
@@ -27,6 +28,16 @@ function App() {
     setTodos((current) => {
       const newCurrent = [...current];
       newCurrent[index].isCompleted = true;
+      localStorage.setItem('todos', JSON.stringify(newCurrent));
+      return newCurrent;
+    })
+  }
+
+  function handleRemove(index) {
+    setTodos((current) => {
+      const newCurrent = [...current];
+      newCurrent.splice(index, 1);
+      localStorage.setItem('todos', JSON.stringify(newCurrent));
       return newCurrent;
     })
   }
@@ -36,7 +47,7 @@ function App() {
       <header>
         <h1>오늘의 할일 ({todos.length}개)</h1>
         <div className="container">
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
               value={todo}
               type="text"
@@ -49,12 +60,13 @@ function App() {
       </header>
       <main>
         <ul>
-          {todos.map((item, index) => (
-            <li><span className={item.isCompleted && "completed"}>{item.value}</span>
+          {localTodos?.map((item, index) => (
+            <li key={index}><span className={item.isCompleted && "completed"}>{item.value}</span>
               <button type="button" 
                 onClick={() => handleComplete(index)}>완료</button>
               <button type="button">수정</button>
-              <button type="button">삭제</button>
+              <button type="button"
+                onClick={() => handleRemove(index)}>삭제</button>
             </li>
           ))}
         </ul>

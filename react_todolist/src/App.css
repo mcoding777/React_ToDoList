@@ -59,7 +59,7 @@ main ul li {
 
 main ul li span {
     display: inline-block;
-    min-width: 200px;
+    min-width: 500px;
 }
 
 main ul li .completed {
