@@ -62,6 +62,10 @@ main ul li span {
     min-width: 200px;
 }
 
+main ul li .completed {
+    text-decoration: line-through;
+}
+
 main ul li button {
     all: unset;
 

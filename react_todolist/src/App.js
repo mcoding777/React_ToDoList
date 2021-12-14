@@ -50,7 +50,7 @@ function App() {
       <main>
         <ul>
           {todos.map((item, index) => (
-            <li><span>{item.value}</span>
+            <li><span className={item.isCompleted && "completed"}>{item.value}</span>
               <button type="button" 
                 onClick={() => handleComplete(index)}>완료</button>
               <button type="button">수정</button>
