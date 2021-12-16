@@ -52,12 +52,15 @@ function App() {
     })
   }
 
-  function Created(props) {
-    return (
-      <input defaultValue={props.value} 
-        type="text" 
-        onChange={(event) => {setTodo(event.target.value);}} />
-    )
+  function handleCreateComplete(index) {
+    setTodos((current) => {
+      const newCurrent = [...current];
+      newCurrent[index].value = todo ? todo : newCurrent[index].value
+      newCurrent[index].created = false;
+      localStorage.setItem('todos', JSON.stringify(newCurrent));
+      return newCurrent;
+    })
+    setTodo("");
   }
 
   return (
@@ -76,17 +79,27 @@ function App() {
       </header>
       <main>
         <ul>
-          {localTodos?.map((item, index) => (
+          {todos?.map((item, index) => (
             <li key={index}><span className={item.isCompleted ? "completed" : ""}>
               {item.created ? 
-                <Created value={item.value} />
+                <input defaultValue={item.value} 
+                key={index} 
+                type="text" 
+                onChange={(event) => {setTodo(event.target.value);}} />
               : item.value}</span>
+              {item.created ? 
+                <button type="button" 
+                onClick={() => handleCreateComplete(index)}>수정하기</button>
+              : 
+              <>
               <button type="button" 
-                onClick={() => handleComplete(index)}>완료</button>
+              onClick={() => handleComplete(index)}>완료</button>
               <button type="button"
                 onClick={() => handleCreate(index)}>수정</button>
               <button type="button"
                 onClick={() => handleRemove(index)}>삭제</button>
+              </>}
+              
             </li>
           ))}
         </ul>
