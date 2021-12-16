@@ -72,6 +72,7 @@ function App() {
         <div className="container">
           <form onSubmit={handleSubmit}>
             <input
+              value={todo}
               type="text"
               placeholder="해야할 일을 여기에 적어주세요"
               onChange={(event) => {setTodo(event.target.value);}} />
