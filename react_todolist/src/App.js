@@ -16,7 +16,8 @@ function App() {
       const newCurrent = [...current, 
         {
           isCompleted: false,
-          value: todo
+          value: todo,
+          created: false
         }]
       localStorage.setItem('todos', JSON.stringify(newCurrent));
       return newCurrent
@@ -33,6 +34,15 @@ function App() {
     })
   }
 
+  function handleCreate(index) {
+    setTodos((current) => {
+      const newCurrent = [...current];
+      newCurrent[index].created = true;
+      localStorage.setItem('todos', JSON.stringify(newCurrent));
+      return newCurrent;
+    })
+  }
+
   function handleRemove(index) {
     setTodos((current) => {
       const newCurrent = [...current];
@@ -42,6 +52,14 @@ function App() {
     })
   }
 
+  function Created(props) {
+    return (
+      <input defaultValue={props.value} 
+        type="text" 
+        onChange={(event) => {setTodo(event.target.value);}} />
+    )
+  }
+
   return (
     <>
       <header>
@@ -49,7 +67,6 @@ function App() {
         <div className="container">
           <form onSubmit={handleSubmit}>
             <input
-              value={todo}
               type="text"
               placeholder="해야할 일을 여기에 적어주세요"
               onChange={(event) => {setTodo(event.target.value);}} />
@@ -60,10 +77,14 @@ function App() {
       <main>
         <ul>
           {localTodos?.map((item, index) => (
-            <li key={index}><span className={item.isCompleted ? "completed" : ""}>{item.value}</span>
+            <li key={index}><span className={item.isCompleted ? "completed" : ""}>
+              {item.created ? 
+                <Created value={item.value} />
+              : item.value}</span>
               <button type="button" 
                 onClick={() => handleComplete(index)}>완료</button>
-              <button type="button">수정</button>
+              <button type="button"
+                onClick={() => handleCreate(index)}>수정</button>
               <button type="button"
                 onClick={() => handleRemove(index)}>삭제</button>
             </li>

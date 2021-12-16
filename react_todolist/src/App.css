@@ -60,13 +60,12 @@ main ul li {
 
 main ul li span {
     display: inline-block;
-    min-width: 500px;
+
+    min-width: 400px;
 }
 
 main ul li .completed {
     text-decoration: line-through;
-
-    transition: text-decoreation 2s ease;
 }
 
 main ul li button {
