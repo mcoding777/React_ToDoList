@@ -35,12 +35,14 @@ function App() {
   }
 
   function handleCreate(index) {
-    setTodos((current) => {
-      const newCurrent = [...current];
-      newCurrent[index].created = true;
-      localStorage.setItem('todos', JSON.stringify(newCurrent));
-      return newCurrent;
-    })
+    if (!todos[index].isCompleted) {
+      setTodos((current) => {
+        const newCurrent = [...current];
+        newCurrent[index].created = true;
+        localStorage.setItem('todos', JSON.stringify(newCurrent));
+        return newCurrent;
+      })
+    }
   }
 
   function handleRemove(index) {
