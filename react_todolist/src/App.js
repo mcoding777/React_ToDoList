@@ -5,6 +5,7 @@ function App() {
 
   const localTodos = JSON.parse(localStorage.getItem('todos'))
   const [todo, setTodo] = useState("");
+  const [create, setCreate] = useState("");
   const [todos, setTodos] = useState(localTodos ? localTodos : [])
 
   function handleSubmit(event) {
@@ -57,12 +58,12 @@ function App() {
   function handleCreateComplete(index) {
     setTodos((current) => {
       const newCurrent = [...current];
-      newCurrent[index].value = todo ? todo : newCurrent[index].value
+      newCurrent[index].value = create ? create : newCurrent[index].value;
       newCurrent[index].created = false;
       localStorage.setItem('todos', JSON.stringify(newCurrent));
       return newCurrent;
     })
-    setTodo("");
+    setCreate("");
   }
 
   return (
@@ -72,7 +73,7 @@ function App() {
         <div className="container">
           <form onSubmit={handleSubmit}>
             <input
-              value={todo}
+              value={todo} 
               type="text"
               placeholder="해야할 일을 여기에 적어주세요"
               onChange={(event) => {setTodo(event.target.value);}} />
@@ -86,9 +87,8 @@ function App() {
             <li key={index}><span className={item.isCompleted ? "completed" : ""}>
               {item.created ? 
                 <input defaultValue={item.value} 
-                key={index} 
                 type="text" 
-                onChange={(event) => {setTodo(event.target.value);}} />
+                onChange={(event) => {setCreate(event.target.value);}} />
               : item.value}</span>
               {item.created ? 
                 <button type="button" 
