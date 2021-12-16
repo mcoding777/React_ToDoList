@@ -40,13 +40,22 @@ header .container button {
 
     color: white;
 
-    padding: 5px;
+    width: 50px;
+    height: 40px;
 
     border-radius: 10px;
 
     background-color: gray;
 
     cursor: pointer;
+}
+
+header .container button:active {
+    width: 49px;
+    height: 39px;
+
+    transition-property: width, height;
+    transition-duration: 0.1s;
 }
 
 main {
@@ -96,13 +105,48 @@ main ul li button {
     color: white;
     font-size: 10px;
 
-    padding: 5px;
+    width: 30px;
+    height: 30px;
 
-    border-radius: 15px;
+    border-radius: 30px;
 
     background-color: gray;
 
     cursor: pointer;
+}
+
+main ul li button:active {
+    all: unset;
+
+    margin-right: 10px;
+
+    color: white;
+    font-size: 10px;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 28px;
+
+    background-color: gray;
+
+    cursor: pointer;
+
+    transition-property: width, height;
+    transition-duration: 0.1s;
+}
+
+main ul li .createButton {
+    width: 100px;
+    height: 30px;
+}
+
+main ul li .createButton:active {
+    width: 98px;
+    height: 28px;
+
+    transition-property: width, height;
+    transition-duration: 0.1s;
 }
 
 main ul li input {

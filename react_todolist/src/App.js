@@ -91,7 +91,7 @@ function App() {
                 onChange={(event) => {setCreate(event.target.value);}} />
               : item.value}</span>
               {item.created ? 
-                <button type="button" 
+                <button type="button" className="createButton" 
                 onClick={() => handleCreateComplete(index)}>수정하기</button>
               : 
               <>
