@@ -56,12 +56,11 @@ function App() {
             <button type="submit">저장</button>
           </form>
         </div>
-        <hr />
       </header>
       <main>
         <ul>
           {localTodos?.map((item, index) => (
-            <li key={index}><span className={item.isCompleted && "completed"}>{item.value}</span>
+            <li key={index}><span className={item.isCompleted ? "completed" : ""}>{item.value}</span>
               <button type="button" 
                 onClick={() => handleComplete(index)}>완료</button>
               <button type="button">수정</button>
