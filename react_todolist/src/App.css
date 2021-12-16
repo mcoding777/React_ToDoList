@@ -60,12 +60,26 @@ main ul li {
 
 main ul li span {
     display: inline-block;
+    position: relative;
 
     min-width: 400px;
 }
 
-main ul li .completed {
-    text-decoration: line-through;
+main ul li span::after {
+    content: "";
+    position: absolute;
+
+    left: 10%;
+    top: 50%;
+    width: 0%;
+    height: 1px;
+    transition: width 0.2s ease-in-out;
+
+    background-color: gray;
+}
+
+main ul li .completed::after {
+    width: 80%;
 }
 
 main ul li button {
