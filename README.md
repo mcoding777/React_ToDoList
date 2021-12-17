@@ -12,3 +12,7 @@ Simple To-Do List with React
 - 수정할 목록은 flag로 관리하고 input 태그로 할일 수정 가능
 - map 함수로 할일 목록 렌더링
 - 버튼 클릭 시 작았다 커지는 active transition 효과 적용
+- CSS 미디어쿼리로 모바일 반응형 페이지로 구현
+
+# 프로젝트 일지
+https://blog.naver.com/mcoding777/222597801549
