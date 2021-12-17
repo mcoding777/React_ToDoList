@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -65,20 +65,6 @@ function App() {
     })
     setCreate("");
   }
-
-  function closeWindow() {
-    const newCurrent = [...todos];
-    for (let i=0; i < todos.length; i++) {
-      newCurrent[i].created = false;
-    }
-    localStorage.setItem('todos', JSON.stringify(newCurrent));
-  }
-
-  useEffect(() => {
-    return (
-      closeWindow()
-    )
-  }, [])
 
   return (
     <>
